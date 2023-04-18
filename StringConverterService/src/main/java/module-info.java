@@ -1,0 +1,3 @@
+module StringConverterService {
+    exports service;
+}
