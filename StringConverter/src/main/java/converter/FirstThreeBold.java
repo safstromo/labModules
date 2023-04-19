@@ -16,7 +16,7 @@ public class FirstThreeBold implements StringConverter {
         return buildString(words);
     }
 
-    private static String buildString(String[] words) {
+    public static String buildString(String[] words) {
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < words.length; i++) {
             if (i == 0)

@@ -1,5 +1,5 @@
 package service;
 
 public interface StringConverter {
-    String convert(String StringToBeConverted);
+    String convert(String stringToBeConverted);
 }
