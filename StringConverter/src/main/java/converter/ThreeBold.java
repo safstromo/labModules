@@ -7,7 +7,8 @@ public class ThreeBold implements StringConverter {
 
     @Override
     public String convert(String stringToBeConverted) {
-        //TODO
+        if (stringToBeConverted.isEmpty())
+            throw new IllegalArgumentException();
 
         String[] words = stringToBeConverted.split(" ");
         makeFirstThreeBold(words);
