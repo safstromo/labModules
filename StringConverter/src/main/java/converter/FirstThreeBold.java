@@ -2,7 +2,7 @@ package converter;
 
 import service.StringConverter;
 
-public class ThreeBold implements StringConverter {
+public class FirstThreeBold implements StringConverter {
 
 
     @Override

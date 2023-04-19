@@ -3,7 +3,6 @@ package client;
 import service.StringConverter;
 
 import java.util.ServiceLoader;
-
 public class Main implements StringConverter {
     static ServiceLoader<StringConverter> serviceLoader = ServiceLoader.load(StringConverter.class);
 

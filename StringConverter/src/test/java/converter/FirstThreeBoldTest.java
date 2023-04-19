@@ -6,27 +6,27 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-class ThreeBoldTest {
-    ThreeBold threeBold = new ThreeBold();
+class FirstThreeBoldTest {
+    FirstThreeBold firstThreeBold = new FirstThreeBold();
 
     @Test
     void makeFirstThreeCharsBoldReturnsStringWithStarsBeforeAndAfterFirstThree() {
-        assertThat(threeBold.convert("test this")).isEqualTo("**tes**t **thi**s");
+        assertThat(firstThreeBold.convert("test this")).isEqualTo("**tes**t **thi**s");
     }
 
     @Test
     void convertSingleWord() {
-        assertThat(threeBold.convert("test")).isEqualTo("**tes**t");
+        assertThat(firstThreeBold.convert("test")).isEqualTo("**tes**t");
     }
 
     @Test
     void convertShortString() {
-        assertThat(threeBold.convert("te")).isEqualTo("**te**");
+        assertThat(firstThreeBold.convert("te")).isEqualTo("**te**");
     }
 
     @Test
     void convertEmptyStringThrowsException() {
-        assertThatIllegalArgumentException().isThrownBy(() -> threeBold.convert(""));
+        assertThatIllegalArgumentException().isThrownBy(() -> firstThreeBold.convert(""));
     }
 }
 
