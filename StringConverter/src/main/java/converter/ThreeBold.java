@@ -29,8 +29,13 @@ public class ThreeBold implements StringConverter {
     private static void makeFirstThreeBold(String[] words) {
         for (int i = 0; i < words.length; i++) {
             StringBuilder stringBuilder = new StringBuilder(words[i]);
-            stringBuilder.insert(3, "**");
-            stringBuilder.insert(0, "**");
+            if (words[i].length() < 3) {
+                stringBuilder.insert(words[i].length(), "**");
+                stringBuilder.insert(0, "**");
+            } else {
+                stringBuilder.insert(3, "**");
+                stringBuilder.insert(0, "**");
+            }
             words[i] = stringBuilder.toString();
         }
     }
