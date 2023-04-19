@@ -3,7 +3,6 @@ package client;
 import service.StringConverter;
 
 import java.util.ServiceLoader;
-import java.util.concurrent.ThreadPoolExecutor;
 
 public class Main implements StringConverter {
     static ServiceLoader<StringConverter> serviceLoader = ServiceLoader.load(StringConverter.class);
@@ -14,9 +13,12 @@ public class Main implements StringConverter {
     }
 
     @Override
-    public String firstThreeBold(String StringToBeConverted) {
+    public String convert(String StringToBeConverted) {
         //TODO
-
-        return "this";
+        String convertedString = "";
+        for (StringConverter s : serviceLoader) {
+            convertedString = s.convert(StringToBeConverted);
+        }
+        return convertedString;
     }
 }

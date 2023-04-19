@@ -1,5 +1,5 @@
 package service;
 
 public interface StringConverter {
-    public String firstThreeBold(String StringToBeConverted);
+    public String convert(String StringToBeConverted);
 }
