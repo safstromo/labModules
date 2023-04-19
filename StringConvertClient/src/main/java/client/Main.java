@@ -2,6 +2,7 @@ package client;
 
 import service.StringConverter;
 
+import java.util.List;
 import java.util.Scanner;
 import java.util.ServiceLoader;
 
@@ -20,18 +21,24 @@ public class Main {
     }
 
     private static void convertWholeBold() {
+        for (var c : getConverters("Whole")) {
+            System.out.println(c.get().convert("test Whole"));
+        }
 
     }
 
     private static void convertToThreeBold() {
-
-        ServiceLoader<StringConverter> serviceLoader = ServiceLoader.load(StringConverter.class);
-        var converters = serviceLoader.stream().toList();
-
-        for (var c : converters) {
+        for (var c : getConverters("Three")) {
             System.out.println(c.get().convert("test"));
         }
 
+    }
+
+    private static List<ServiceLoader.Provider<StringConverter>> getConverters(String containsString) {
+        ServiceLoader<StringConverter> serviceLoader = ServiceLoader.load(StringConverter.class);
+        return serviceLoader.stream()
+                .filter(stringConverterProvider -> stringConverterProvider.type()
+                        .getSimpleName().contains(containsString)).toList();
     }
 
     private static void printMenu() {
