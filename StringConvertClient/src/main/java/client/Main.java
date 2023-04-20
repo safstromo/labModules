@@ -13,7 +13,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         while (true) {
             printMenu();
-            switch (scanner.next()) {
+            switch (scanner.nextLine()) {
                 case "1" -> convertToThreeBold(getStringToConvert(scanner));
                 case "2" -> convertWholeBold(getStringToConvert(scanner));
                 case "3" -> System.exit(0);
@@ -63,7 +63,7 @@ public class Main {
                 Enter the string you want converted:
                 --------------------------------------------------------------
                 """);
-        return scanner.next();
+        return scanner.nextLine();
     }
 }
 
