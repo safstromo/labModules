@@ -1,0 +1,7 @@
+package client;
+
+class MainTest {
+
+
+
+}
