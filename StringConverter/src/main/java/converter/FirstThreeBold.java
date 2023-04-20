@@ -2,10 +2,10 @@ package converter;
 
 import annotations.Convert;
 import service.StringConverter;
-
+@Convert("threeBold")
 public class FirstThreeBold implements StringConverter {
 
-    @Convert("threeBold")
+
     @Override
     public String convert(String stringToBeConverted) {
         if (stringToBeConverted.isEmpty())

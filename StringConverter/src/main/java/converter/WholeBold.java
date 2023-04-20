@@ -2,9 +2,9 @@ package converter;
 
 import annotations.Convert;
 import service.StringConverter;
-
+@Convert("bold")
 public class WholeBold implements StringConverter {
-    @Convert("bold")
+
     @Override
     public String convert(String stringToBeConverted) {
         if (stringToBeConverted.isEmpty())

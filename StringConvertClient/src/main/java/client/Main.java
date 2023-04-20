@@ -1,5 +1,6 @@
 package client;
 
+import annotations.Convert;
 import service.StringConverter;
 
 import java.util.List;
@@ -13,32 +14,36 @@ public class Main {
         while (true) {
             printMenu();
             switch (scanner.nextLine()) {
-                case "1" -> convertToThreeBold();
-                case "2" -> convertWholeBold();
+                case "1" -> convertToThreeBold(getStringToConvert(scanner));
+                case "2" -> convertWholeBold(getStringToConvert(scanner));
                 case "3" -> System.exit(0);
             }
         }
     }
 
-    private static void convertWholeBold() {
-        for (var c : getConverters("Whole")) {
-            System.out.println(c.get().convert("test Whole"));
+    private static void convertWholeBold(String input) {
+        for (var c : getConverters("bold")) {
+            System.out.println(c.convert(input));
         }
 
     }
 
-    private static void convertToThreeBold() {
-        for (var c : getConverters("Three")) {
-            System.out.println(c.get().convert("test"));
+    private static void convertToThreeBold(String input) {
+        for (var c : getConverters("threeBold")) {
+            System.out.println(c.convert(input));
         }
 
     }
 
-    private static List<ServiceLoader.Provider<StringConverter>> getConverters(String containsString) {
+    private static List<StringConverter> getConverters(String containsString) {
         ServiceLoader<StringConverter> serviceLoader = ServiceLoader.load(StringConverter.class);
         return serviceLoader.stream()
-                .filter(stringConverterProvider -> stringConverterProvider.type()
-                        .getSimpleName().contains(containsString)).toList();
+                .filter(c -> c.type().isAnnotationPresent(Convert.class)
+                        && c.type().getAnnotation(Convert.class)
+                        .value()
+                        .equals(containsString))
+                .map(ServiceLoader.Provider::get)
+                .toList();
     }
 
     private static void printMenu() {
@@ -50,6 +55,15 @@ public class Main {
                 3. Exit
                 --------------------------------------------------------------
                 """);
+    }
+
+    private static String getStringToConvert(Scanner scanner) {
+        System.out.println("""
+                --------------------------------------------------------------
+                Enter the string you want converted:
+                --------------------------------------------------------------
+                """);
+        return scanner.nextLine();
     }
 }
 
